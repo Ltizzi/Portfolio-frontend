@@ -1,0 +1,183 @@
+ <div class="container-fluid" @slideTop *ngIf="load">
+
+<div class="row">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+      <div class="navbar col-sm-1">
+      
+            <a class="navbar-brand text-white" routerLink="/" title="Volver a inicio">
+                Portfolio         
+            </a>
+      
+            
+       
+            <div class="alert alert-danger" *ngIf="isLogIn && !isExpired">
+            
+              <p>Reloguee, el token ha expirado</p>
+          
+            </div>
+        
+      </div>
+
+      <div class="col-sm-1">
+        <a href="https://www.argentina.gob.ar/produccion/argentina-programa/segunda-etapa" title="Ver temario del programa">
+          <img src="/assets/arg prog.png" class="img-fluid arg-prog">
+        </a>
+
+      
+      </div>
+
+      <div class="col-sm-1">
+        <button class="bot-col navbar-toggler navbar-dark " 
+                type="button"  
+                data-toggle="collapse" 
+                data-target="#caca" 
+                aria-controls="caca" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon navbar-dark ">
+
+          </span>
+        </button>
+      </div>
+
+  
+      <div class="collapse navbar-collapse col-sm-8 justify-content-end"   id="caca" >
+        <ul class="navbar-nav justify-content-end">
+              
+          <li class="nav-item nav-text" 
+              routerLinkActive="active current">
+              <a class="nav-link" 
+                  routerLink="/skills"
+                  data-toggle="collapse" 
+                  data-target=".navbar-collapse.show" >
+                  <h4 class="texto text-center">
+                    Skills
+                  </h4>
+              </a>
+          </li>
+          <li class="nav-item nav-text " 
+              routerLinkActive="active current">
+              <a class="nav-link" 
+                  routerLink="/edu"
+                  data-toggle="collapse" 
+                  data-target=".navbar-collapse.show">
+                  <h4 class="texto text-center">
+                    Educación
+                  </h4>
+              </a>
+          </li>
+          <li class="nav-item nav-text " 
+              routerLinkActive="active current">
+              <a class="nav-link " 
+                  routerLink="/exp"
+                  data-toggle="collapse" 
+                  data-target=".navbar-collapse.show">
+                  <h4 class="texto text-center">
+                    Experiencia
+                  </h4>
+                
+              </a>
+          </li>
+          <li class="nav-item nav-text " 
+              routerLinkActive="active current">
+            <a class="nav-link " 
+                routerLink="/contacto"
+                data-toggle="collapse" 
+                data-target=".navbar-collapse.show">
+                <h4 class="texto text-center">
+                  Contacto
+                </h4>
+             
+            </a>
+          </li>
+
+        
+
+          <li class="nav-link">
+            <a href="{{persona.twitter}}" 
+                class="nav-item navbar-brand "
+                data-toggle="collapse"                   
+                data-target=".navbar-collapse.show">
+              <i class="fab fa-twitter fa-lg social-logo text-white"></i>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="{{persona.facebook}}" 
+                class="nav-item navbar-brand "
+                data-toggle="collapse"                   
+                data-target=".navbar-collapse.show">         
+              <i class="fab fa-facebook fa-lg social-logo  text-white text-center"></i>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="{{persona.linkedin}}" 
+                class="nav-item navbar-brand "
+                data-toggle="collapse"                   
+                data-target=".navbar-collapse.show">  
+              <i class="fab fa-linkedin-in fa-lg text-white social-logo"></i>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="{{persona.github}}" 
+                class="nav-item navbar-brand"
+                data-toggle="collapse"                   
+                data-target=".navbar-collapse.show">           
+              <i class="fab fa-github fa-lg social-logo text-white text-center"></i>
+            </a>
+          </li>
+
+          <li class="nav-item nav-link nav-text">
+            <button mat-raised-button color="accent"  
+                    data-toggle="collapse"                   
+                    data-target=".navbar-collapse.show"
+                    class="texto boton" 
+                    *ngIf="!isLogIn()" 
+                    (click)="openDialog()"
+                    title="Ingresar usuario">
+                    Login
+            </button>
+           
+          </li>
+          <li class="nav-item nav-link nav-text">
+            <button mat-raised-button
+                    data-toggle="collapse"                   
+                    data-target=".navbar-collapse.show"
+                    color="accent" 
+                    class="texto boton"  
+                    routerLink="/"  
+                    *ngIf="isLogIn()" 
+                    (click)="logOut()"
+                    title="Desloguear">
+                    Logout
+            </button>
+          
+          </li>
+          <li class="nav-item nav-link nav-text">
+            <button mat-raised-button 
+                    data-toggle="collapse"                   
+                    data-target=".navbar-collapse.show"
+                    color="accent" 
+                    class="texto pr-2 boton" 
+                    routerLink="/admin" 
+                    *ngIf="isLogIn()"
+                    title="Ver mensajes">
+              <a class="text-white" 
+                  routerLink="/admin">
+                  Admin
+              </a>
+            </button>
+          </li>
+      
+        </ul>
+      </div>
+
+      <div class="col-sm-1"></div>
+      
+
+  </nav>
+</div>
+
+</div>
+
+
+

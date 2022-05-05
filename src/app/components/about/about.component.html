@@ -1,0 +1,396 @@
+
+<div class="container-fluid row">
+    
+    <div class="row todo">
+        <div class="col-md-1"></div>
+        <div @aboutAnimation class="col-md-10">
+            
+            <div  @zoomInDown>
+                <div>
+                    <div class="tarjeta shadow   rounded">
+                        <div class="row" *ngIf="!editor">
+
+                                <div class="container-fluid headimg">
+                                    <img class="img-fluid " src="/assets/headerimg.jpg" alt="cielito lindo">
+                                    <div @slideLeft class="tar-img">
+                                        <img  class="imgensi img-fluid"src="{{persona.profile_pic}}" alt="Card image cap">
+                                    </div>
+                                </div>
+             
+                        </div>
+
+                        <!-- Visualización de data -->
+
+                        <div class="row" *ngIf="!editor">
+                             <div class="tar-body col-sm-10" @slideRight >
+                                    
+                                    <h4 class="card-title pt-2">
+                                        {{persona.nombre}} {{persona.apellido}}
+                                    </h4>
+                                    <h5 class="card-subtitle">
+                                        Full Stack Developer Jr.
+                                    </h5>
+                                    <ul style="list-style-type:none">
+                                        <li class="card-text">
+                                            Fecha de nacimiento: {{persona.birth_date}}
+                                        </li>
+                                        <li class="card-text">
+                                            {{persona.ciudad}},  {{persona.pais}} 
+                                        </li>
+                                        <li class="card-text">
+                                            <a href="mailto:{{persona.mail}}">
+                                                {{persona.mail}}
+                                            </a> 
+                                        </li>
+                                    </ul>
+                                 
+                      
+                                </div>
+
+                                <div class="tar-crud col-xl-2" *ngIf="!editor && isAdmin()">
+                               
+                                    <button class="btn btn-info" (click)="callEditor()" title="Editar Perfil">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                        </svg>
+                                    </button>
+                               
+                                </div>
+                        </div>
+            
+            
+                        <div class="row" @slideLeft>
+                         
+                                <div class="data-about col-sm-12 pt-1" *ngIf="!editor">
+                                    <p>{{persona.about}}</p>
+                                </div>
+                        </div>
+            
+                        <div class="row">
+                            <div class="editor col-sm-10" *ngIf="editor" @fade>
+                            
+                                <!-- FORMULARIO -->
+                                <form #form="ngForm" (ngSubmit)="submitEdit(form)" id="form" @fade>
+            
+                
+                                        <div class="form-group row">
+                                            <div class="col-sm-4 form-data">
+                                                <mat-form-field appearance="fill" >
+                                                    <mat-label for="nombre">Nombre</mat-label>
+                                                <input
+                                                    
+                                                    minlength="3"
+                                                    maxlength="15"
+                                                    type="text"
+                                                    ngModel
+                                                    matInput
+                                                    name="nombre"
+                                                    #nombre="ngModel"
+                                                    id="nombre"
+                                                    class="form-control"
+                                                    placeholder="{{persona.nombre}}"><!-- pattern="Leonardo" -->
+                                                <div 
+                                                    class="alert alert-danger" 
+                                                    *ngIf="nombre.touched && !nombre.valid">
+                                                <div *ngIf="nombre.errors?.['required']">
+                                                    Debe introducir el nombre</div>
+                                                <div *ngIf="nombre.errors?.['minlength']">
+                                                    Nombre debe tener un míńimo de {{ nombre.errors?.['minlength'].requiredLength }} caracteres</div>
+                                           
+                                                </div> 
+                                                </mat-form-field>
+                                                
+                                            </div>
+            
+                                            <div class="col-sm-4 form-data">
+                                                <mat-form-field appearance="fill">
+                                                    <mat-label for="apellido">Apellido</mat-label>
+                                                <input 
+                                                    minlength="3"
+                                                    maxlength="15"
+                                                    type="text"
+                                                    ngModel
+                                                    matInput
+                                                    name="apellido"
+                                                    #apellido="ngModel"
+                                                    id="apellido"
+                                                    class="form-control"
+                                                    placeholder="{{persona.apellido}}">
+                                                <div 
+                                                        class="alert alert-danger" 
+                                                        *ngIf="apellido.touched && !apellido.valid">
+                                                    <div *ngIf="apellido.errors?.['required']">
+                                                         Debe introducir el apellido</div>
+                                                    <div *ngIf="apellido.errors?.['minlength']">
+                                                         Nombre debe tener un míńimo de {{ apellido.errors?.['minlength'].requiredLength }} caracteres</div>
+                                          
+                                                </div>
+                                                </mat-form-field>
+                                                
+                                            </div>
+            
+                                            <div class="col-sm-4 form-data">
+                                                <mat-form-field appearance="fill">
+                                                    <mat-label for="birth_date">Fecha de nacimiento</mat-label>
+                                                        <input matInput
+                                                                ngModel
+                                                                name="birth_date"                                                     
+                                                                #birth_date="ngModel"
+                                                                id="birth_date"
+                                                                 class="form-control"
+                                                                [matDatepicker]="picker">
+                                                        <mat-hint>MM/DD/YYYY</mat-hint>
+                                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                        <mat-datepicker #picker></mat-datepicker>
+                                                </mat-form-field>
+                                            
+                                            </div> 
+            
+                                           
+                                        
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <div class="col-sm-4 form-data">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label for="ciudad">
+                                                        Ciudad
+                                                    </mat-label>
+                                                    <input 
+                                                        minlength="3"
+                                                        maxlength="15"
+                                                        type="text"
+                                                        ngModel
+                                                        matInput
+                                                        name="ciudad"
+                                                        #ciudad="ngModel"
+                                                        id="ciudad"
+                                                        class="form-control"
+                                                        placeholder="{{persona.ciudad}}">
+                                                <div 
+                                                    class="alert alert-danger" 
+                                                    *ngIf="ciudad.touched && !ciudad.valid">
+                                                <div *ngIf="ciudad.errors?.['required']">
+                                                    Debe introducir la ciudad</div>
+                                                <div *ngIf="ciudad.errors?.['minlength']">
+                                                    La ciudad debe tener un míńimo de {{ apellido.errors?.['minlength'].requiredLength }} caracteres</div>
+                                                
+                                                </div>
+                                                </mat-form-field>
+                                        
+                                                
+                                            </div>
+
+                                            <div class="col-sm-4 form-data">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label for="pais">
+                                                        País
+                                                    </mat-label>
+                                                    <input 
+                                                        minlength="3"
+                                                        maxlength="15"
+                                                        type="text"
+                                                        ngModel
+                                                        matInput
+                                                        name="pais"
+                                                        #pais="ngModel"
+                                                        id="pais"
+                                                        class="form-control"
+                                                        placeholder="{{persona.pais}}">
+                                                <div 
+                                                    class="alert alert-danger" 
+                                                    *ngIf="pais.touched && !pais.valid">
+                                                <div *ngIf="pais.errors?.['required']">
+                                                    Debe introducir el nombre del país</div>
+                                                <div *ngIf="ciudad.errors?.['minlength']">
+                                                    El país debe tener un míńimo de {{ apellido.errors?.['minlength'].requiredLength }} caracteres</div>
+                                      -->
+                                                </div>
+                                                </mat-form-field>
+                                    
+                                                
+                                            </div>
+
+                                            <div class="col-sm-4 form-data">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label for="mail">Email</mat-label>
+                                                    <input
+                                                        matInput 
+                                                        type="text"
+                                                        ngModel
+                                                        name="mail"
+                                                        #mail="ngModel"
+                                                        id="mail"
+                                                        class="form-control"
+                                                        placeholder="{{persona.mail}}">   
+                                                </mat-form-field>
+                                               
+                                                
+                                            </div>
+                                        </div>
+                
+                                        <br>
+            
+                                        <div class="form-group">
+            
+                                      
+                                            <div class="row form-url">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label for="profile_pic">
+                                                        Foto de perfil
+                                                    </mat-label>
+                                                    <input
+                                                        matInput 
+                                                        type="url"
+                                                        ngModel
+                                                        name="profile_pic"
+                                                        #profile_pic="ngModel"
+                                                        id="profile_pic"
+                                                        class="form-control"
+                                                        placeholder="{{persona.profile_pic}}" > 
+                                                </mat-form-field>
+                                            
+                                                
+                                            </div>
+                                        </div>
+            
+                                        <br>
+                                       
+            
+                                        <div class="form-group">
+            
+                                            <div class="row form-url">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label for="twitter">Twitter</mat-label>
+                                                    <input
+                                                        matInput 
+                                                        type="url"
+                                                        ngModel
+                                                        name="twitter"
+                                                        #twitter="ngModel"
+                                                        id="twitter"
+                                                        class="form-control"
+                                                        placeholder="{{persona.twitter}}">
+                                                </mat-form-field>
+                                          
+                                                
+                                            </div>
+            
+                                            <div class="row form-url">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label for="facebook">
+                                                        Facebook
+                                                    </mat-label>
+                                                    <input
+                                                        matInput 
+                                                        type="url"
+                                                        ngModel
+                                                        name="facebook"
+                                                        #facebook="ngModel"
+                                                        id="facebook"
+                                                        class="form-control"
+                                                        placeholder="{{persona.facebook}}">
+                                                </mat-form-field>
+                                                
+                                               
+                                            </div>
+            
+                                            <div class="row form-url">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label for="linkedin">
+                                                        Linkedin
+                                                    </mat-label>
+                                                    <input 
+                                                        matInput
+                                                        type="url"
+                                                        ngModel
+                                                        name="linkedin"
+                                                        #linkedin="ngModel"
+                                                        id="linkedin"
+                                                        class="form-control"
+                                                        placeholder="{{persona.linkedin}}">
+                                                </mat-form-field>
+                                               
+                                               
+                                            </div>
+            
+                                            <div class="row form-url">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label for="github">
+                                                        Github
+                                                        <input 
+                                                            matInput
+                                                            type="url"
+                                                            ngModel
+                                                            name="github"
+                                                            #github="ngModel"
+                                                            id="github"
+                                                            class="form-control"
+                                                            placeholder="{{persona.github}}">
+                                                    </mat-label>
+                                                </mat-form-field>
+                                                
+                                                
+                                            </div>                  
+                                        </div>
+                                            
+                
+                                        <div class="form-group row">
+                                            <mat-form-field appearance="outline">
+                                                <mat-label for="about">
+                                                    Descripción personal
+                                                </mat-label>
+                                                <textarea
+                                                    matInput 
+                                                    cdkTextareaAutosize="true"
+                                                    ngModel name="about" 
+                                                    id="about"                                                 
+                                                    class="form-control"
+                                                    placeholder="{{persona.about}}"></textarea>
+                                            </mat-form-field>
+                                            
+                                            
+                                        </div>
+                
+                                            <div *ngIf="editor">
+                                                <!-- <p>
+                                                {{form.value | json}}
+                                                </p> -->
+                                            <button                        
+                                                class="btn btn-primary" 
+                                                [disabled]="!form?.['valid']">
+                                            Submit
+                                            </button>
+                                            </div>
+                                
+                                   
+                                </form>
+                            </div>
+                            
+                            <div class="editor col-sm-1" *ngIf="editor && isAdmin()" @fade>
+                            
+                                <button class="btn btn-info float-end" (click)="callEditor()" title="Editar Perfil">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                </button>
+                           
+                            </div>     
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+                           
+                       
+                    
+            
+            
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+</div>
+

@@ -1,0 +1,295 @@
+<div  class="seccion" @fade>
+    <h1 color="accent" class="text-center seccion-title">
+     Hard Skills
+    </h1>
+</div>
+
+<div class="container-fluid row">
+   
+    
+        <div class="container-fluid todo" *ngIf="load">
+            <div class="create" @fadeslow>
+        
+                <button *ngIf="isAdmin()" class="btn btn-warning" (click)="callEditorCreate()" title="Crear nueva entrada">
+                    Agregar nuevo skill
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                      </svg>
+                </button>
+        
+                <div  @fade *ngIf="editorCreate">
+        
+                    <form class="editor-create" #form="ngForm" (ngSubmit)="submitForm(form, 0)">
+        
+                        <div class="form-group row d-flex">
+        
+                            <div class="col-sm-3 form-data">
+                                <label for="skill_nombre">Título:</label>
+                                            <input
+                                                [attr.required]="postOrPatch ? postOrPatch: null"
+                                                minlength="3"
+                                                maxlength="15"
+                                                type="text"
+                                                ngModel
+                                               
+                                                name="skill_nombre"
+                                                #skill_nombre="ngModel"
+                                                id="skill_nombre"
+                                                class="form-control">
+                                            <div 
+                                                class="alert alert-danger" 
+                                                *ngIf="skill_nombre.touched && !skill_nombre.valid">
+                                            <div *ngIf="skill_nombre.errors?.['required']">
+                                                Debe introducir el nombre de la habilidad</div>
+                                            <div *ngIf="skill_nombre.errors?.['minlength']">
+                                                El nombre debe tener un míńimo de {{ skill_nombre.errors?.['minlength'].requiredLength }} caracteres</div>
+                                             <div *ngIf="skill_nombre.errors?.['pattern']">
+                                                El nombre sólo debe tener letras del alfabeto</div>
+                                            </div>
+                            </div>
+        
+                            <div class="col-sm-3 form-data">
+                                <label for="nivel">Nivel:</label>
+                                            <select
+                                                [attr.required]="postOrPatch ? postOrPatch: null" 
+                                                ngModel                                            
+                                                name="nivel"
+                                                #nivel="ngModel"
+                                                id="nivel"
+                                                class="form-control">
+                                                <option value="" disabled selected>Elija una opción</option>
+                                                <option value="Principiante">Principiante</option>
+                                                <option value="Intermedio">Intermedio</option>
+                                                <option value="Avanzado">Avanzado</option>
+                                            <div 
+                                                class="alert alert-danger" 
+                                                *ngIf="nivel.touched && !nivel.valid">
+                                            <div *ngIf="nivel.errors?.['required']">
+                                                Debe introducir el nombre de la empresa</div>
+                                            </div>
+                                                
+                                            </select>
+                            </div>
+
+                            <div class="form-group col-sm-12">
+                                <label for="url_icon">Foto descriptiva:</label>
+                                <input
+                                        [attr.required]="postOrPatch ? postOrPatch: null" 
+                                        ngModel
+                                        class="form-control form-url"
+                                        name="url_icon"
+                                        #url_icon="ngModel"
+                                        id="url_icon"
+                                        type="text">
+                            </div>
+        
+        
+        
+        
+                        </div>
+                     
+                     
+        
+                            
+                      
+        
+                        <div *ngIf="editorCreate">
+                       
+                            <button                        
+                                class="btn btn-primary"
+                                
+                                [disabled]="!form?.['valid']">
+                           
+                                Submit
+                            </button>
+                        </div>
+                        
+        
+                    </form>
+                </div>
+        
+            </div>
+        
+            <!-- (cdkDropListDropped)="drop($event)" cdkDropList -->
+            <div   class="container d-flex flex-wrap">
+               
+                <!-- cdkDrag -->
+                <div *ngFor="let skill of skills" class="contenedor row" > 
+                    <div   *ngIf="skill.editor || !skill.visible">
+            
+                       
+                        <div @slideLeft class="pelota col-sm-3" id="{{skill.skill_id}}" *ngIf="!skill.deleted">
+                        
+    
+                                <img class="imgensi"src="{{skill.url_icon}}" alt="Card image cap">
+                  
+                        </div>
+       
+                    </div>
+
+                  
+                </div>
+                
+               
+
+            </div>
+            <div class="tarjeta" @fade>
+                <div  *ngFor="let skill of skills">
+                    <div class="tar-body row" >
+    
+                        <div class="col-md-10" *ngIf="!skill.editor || !skill.visible">
+                            <!-- <h5 class="card-title">{{skill.skill_nombre}} Nivel: {{skill.nivel}}</h5> -->
+                            <br>
+                            <p class="card-title">{{skill.skill_nombre}}</p>
+                            <div class="bars">
+                                <div class="skills card-text" id="{{skill.nivel}}">
+                                    {{skill.nivel}}
+                                </div>
+                            </div>
+                     
+                        </div>
+                        
+                        
+                        <div class="col-md-2" *ngIf="!skill.editor || !skill.visible">
+                            <div class="tar-crud d-flex" *ngIf="isAdmin()" title="Crear nueva entrada">
+                                
+                                <button class="btn btn-info tar-btn mt-5" (click)="callEditorEdit(skill.skill_id)" title="Editar entrada">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                </button>
+                                <button class="btn btn-danger mt-5" (click)="delSkill(skill.skill_id)" title="Borrar entrada">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                                        <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                    </svg>
+                                </button>
+                              
+                            </div>
+                        </div>
+
+                        <div class="editor-ed" *ngIf="skill.editor && skill.visible">
+                
+                            <form #form="ngForm" (ngSubmit)="submitForm(form, skill.skill_id)" @fade>
+                
+                                <div class="form-group row d-flex">
+
+                                    <div class="col-sm-2 form-data">
+
+                                        <label for="skill_nombre">Título:</label>
+                                                    <input
+                                                        [attr.required]="postOrPatch ? postOrPatch: null"
+                                                        minlength="3"
+                                                        maxlength="15"
+                                                        type="text"
+                                                        ngModel
+                                                       
+                                                        name="skill_nombre"
+                                                        #skill_nombre="ngModel"
+                                                        id="skill_nombre"
+                                                        class="form-control"
+                                                        placeholder="{{skill.skill_nombre}}">
+                                                    <div 
+                                                        class="alert alert-danger" 
+                                                        *ngIf="skill_nombre.touched && !skill_nombre.valid">
+                                                    <div *ngIf="skill_nombre.errors?.['required']">
+                                                        Debe introducir el nombre de la habilidad</div>
+                                                    <div *ngIf="skill_nombre.errors?.['minlength']">
+                                                        El nombre debe tener un míńimo de {{ skill_nombre.errors?.['minlength'].requiredLength }} caracteres</div>
+                                                     <div *ngIf="skill_nombre.errors?.['pattern']">
+                                                        El nombre sólo debe tener letras del alfabeto</div>
+                                                    </div>
+                                    </div>
+                
+                                    <div class="col-sm-2 form-data">
+
+                                        <label for="nivel">Nivel:</label>
+                                                    <select
+                                                        [attr.required]="postOrPatch ? postOrPatch: null" 
+                                                        ngModel                                            
+                                                        name="nivel"
+                                                        #nivel="ngModel"
+                                                        id="nivel"
+                                                        class="form-control"
+                                                        >
+                                                        <option value="" disabled selected>Elija una opción</option>
+                                                        <option value="Principiante">Principiante</option>
+                                                        <option value="Intermedio">Intermedio</option>
+                                                        <option value="Avanzado">Avanzado</option>
+                                                    <div 
+                                                        class="alert alert-danger" 
+                                                        *ngIf="nivel.touched && !nivel.valid">
+                                                    <div *ngIf="nivel.errors?.['required']">
+                                                        Debe introducir el nombre de la empresa</div>
+                                                    </div>
+                                                        
+                                                    </select>
+                                    </div>
+
+                                    <div class="form-group col-sm-3">
+                                        <label for="url_icon">Imagen:</label>
+                                        <input
+                                                [attr.required]="postOrPatch ? postOrPatch: null" 
+                                                ngModel
+                                                class="form-control form-url"
+                                                name="url_icon"
+                                                #url_icon="ngModel"
+                                                id="url_icon"
+                                                type="text"
+                                                placeholder="{{skill.url_icon}}">
+                                    </div>
+                                  
+                                    
+                                   
+                                    <div *ngIf="skill.editor" class="col-sm-4">
+                                    
+                                             <button                        
+                                                 class="btn btn-primary mt-3"
+                                                 
+                                                 [disabled]="!form?.['valid']">
+                                            
+                                                 Submit
+                                             </button>
+                                    </div>
+
+                                    <div class="tar-btn2 col-sm-1 d-flex pt-3" *ngIf="isAdmin()" title="Crear nueva entrada">
+                                        <button class="btn btn-info" (click)="callEditorEdit(skill.skill_id)" title="Editar entrada">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn btn-danger" (click)="delSkill(skill.skill_id)" title="Borrar entrada">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                                                <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    
+                
+                                    
+                                    
+                
+                                </div>
+                            
+                
+                            </form>
+                        </div>
+    
+                       
+               
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    
+    
+</div>
+
+<app-footer *ngIf="load"></app-footer>
+
+
+

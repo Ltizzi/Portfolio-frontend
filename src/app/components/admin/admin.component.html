@@ -1,0 +1,46 @@
+<div  class="seccion">
+    <h1 color="accent" class="text-center seccion-title">
+     Mensajes de contacto
+    </h1>
+</div>
+
+
+<div class="container-fluid">
+    <div *ngFor="let contact of contactos" >
+        <div class="tarjeta" id="{{contact.contacto_id}}" @fade *ngIf="!contact.deleted">
+            <ul>
+                <li class="card-title">
+                    {{contact.nombre}}
+                </li>
+
+                <li class="card-title">
+                    Id: {{contact.contacto_id}}
+                </li>
+
+                <li>
+                    {{contact.email}}
+                </li>
+                
+                <li class="novisto navbar-brand" *ngIf="!contact.visto">
+                    <mat-icon>check_circle</mat-icon>
+                </li>
+    
+                <li class="visto navbar-brand" *ngIf="contact.visto">
+                    <mat-icon>check_circle</mat-icon>   
+                </li>
+                <p>
+                    {{contact.about}}
+                </p>
+            </ul>
+            <button class="btn btn-danger" (click)="deleteContact(contact.contacto_id)">
+                <!-- <i class="fa-solid fa-x"></i> -->
+                <mat-icon>cancel</mat-icon>
+            </button>
+            <button class="btn btn-success navbar-brand" (click)="marcarVisto(contact.contacto_id)">
+                
+                <mat-icon>check_circle</mat-icon>
+            </button>
+        </div>
+        
+    </div>
+</div>

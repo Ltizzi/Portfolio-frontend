@@ -1,0 +1,265 @@
+.todo {
+    
+    background-color: transparent;
+    padding-top: 5%;
+      
+}
+
+.seccion {
+    padding: 2rem;
+    margin-top: 4rem;
+    background-color: rgba(57, 121, 107, 0.6);
+    
+}
+
+.seccion-title {
+    font-size: 3rem;
+    color:rgb(255, 254, 246);
+    text-shadow: 5px 5px 3px rgba(0, 37, 26, 0.5);
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+
+}
+
+
+a { 
+    
+    color:rgb(179, 233, 62);
+    font-size: 1.2rem;
+}
+
+
+.headimg {
+    padding-right: 2rem;
+     
+}
+
+
+.imgensi {
+    
+    background-color: white;
+    border-style: double;
+    max-width: 50%;
+    width: 250px;
+    margin-top: -10.8rem;
+    margin-left: -1rem;
+    
+    
+}
+
+.tarjeta {
+
+    margin-top: -10rem;
+    padding-right: 0em;
+    padding-left: 2em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    border-width: 5px;
+    border-color: rgb(42, 57, 64);
+    border-style:groove;
+    margin-bottom: 5px; 
+    background-color: rgba(42, 57, 64, 0.9);
+    color:rgb(255, 253, 240);
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+    text-shadow: rgb(122, 122, 111) 0.2em 0.2em 0.2em ;
+    text-decoration-color:rgb(153, 123, 90);
+    text-decoration:wavy;
+    font-size: 1rem;
+    border-radius: 20px;
+    
+    
+}
+
+.editor {
+    margin-top: 10rem;
+
+    background-color: rgba(42, 57, 64, 0.9);
+    padding: 2rem;
+}
+
+.tar-img {
+    padding:0.5em;
+    margin-top: -10em;
+ 
+}
+
+.tar-body {
+    padding: 1%;
+    margin-top: -0.8rem;
+ 
+}
+
+
+.tar-crud {
+    padding-top: 1%;
+    margin-top:3rem;
+}
+#form{
+    background-color: rgb(248, 241, 217);
+    padding: 2rem;
+}
+  
+
+
+
+.card-text {
+    font-size: 1.2em;
+    margin-left: -1.5em;
+    padding: 0.2em;
+   
+    
+}
+
+.card-title {
+    font-size: 2em;
+    margin: 0.2em;
+    padding-bottom: 0.2em;
+  
+}
+
+.card-subtitle {
+    font-size: 1.5em;
+    margin: 0.3em;
+    padding: 0.3em;
+    padding-top: 0.1em;
+    font-style: italic;
+
+}
+
+.data-about {
+    font-size:1.2em;
+    padding-right: 2rem;
+  
+}
+
+.crud-editor {
+    padding-top: 1%;
+    font-size: 1.5rem;
+    
+
+}
+
+.btn {
+    margin-right: 2px;
+    
+}
+
+.form-data{
+    width: fit-content;
+}
+
+.form-url {
+    width: 32em;
+    
+}
+
+
+
+
+@media (max-width: 950px) {
+    .headimg {
+        padding-right: 2rem;
+       
+    }
+
+    .imgensi {
+
+        margin-top: -7rem;
+        width: 200px;
+    }
+
+    .card-title {
+        font-size: 1.2em;
+    }
+
+    .card-subtitle {
+        font-size: 1.2em;
+    }
+
+    .card-text {
+        font-size: 1.2em;
+    }
+
+    .data-about {
+        font-size: 1.2em;
+
+    }
+
+  
+}
+
+@media (max-width: 1400px) {
+    .headimg{
+        padding-right: 2rem;
+    }
+
+    .imgensi {
+        margin-left: -1rem;
+    }
+
+    .imgs {
+        margin: auto;
+    }
+}
+
+@media (max-width: 1200px) {
+    .headimg{
+        padding-right: 2rem;
+       
+    }
+
+    .imgensi {
+        margin-left: -1rem;
+
+
+    }
+
+    .tarjeta {
+        margin-top: 5rem;
+    }
+
+    .tar-body {
+        margin-top: -1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .headimg {
+        padding-right: 2rem;
+    }
+
+    .imgensi {
+
+        width: 100px;
+        margin-top: 0rem;
+        margin-left: -1rem;
+    }
+
+    .tarjeta {
+        margin-top: 10em;
+    }
+
+    .tar-body {
+        padding-top: 1em;
+        padding-right: 2em;
+        margin-left: -0.6em;
+        
+    }
+
+   
+
+}
+
+@media (max-width: 1900px) {
+    .headimg {
+        padding-right: 2rem;
+        
+    }
+
+}
+
+@media (min-width: 1920px) {
+    .tarjeta{
+        margin-top: -12rem;
+    }
+
+}

@@ -1,0 +1,67 @@
+.todo {
+
+    background-color: transparent;
+    padding-top: 1rem;
+
+}
+
+
+
+
+.tarjeta { 
+
+    margin: 3em;
+    padding-right: 2em;
+    padding-left: 2em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    border-width: 5px;
+    border-color: rgb(42, 57, 64);
+    border-style:groove;
+    margin-bottom: 5px;    
+    background-color: rgba(42, 57, 64, 0.9);    
+    color: white;
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+    text-shadow: rgb(28, 34, 35) 0.1em 0.1em 0.2em;;
+    text-decoration-color:rgb(153, 123, 90);
+    text-decoration:wavy;
+    
+}
+
+.seccion {
+    padding: 2rem;
+    margin-top: 4rem;
+    background-color: rgba(57, 121, 107, 0.6);
+   
+
+}
+
+.seccion-title {
+    font-size: 3rem;
+    color: antiquewhite;
+    text-shadow: 5px 5px 3px rgba(0, 37, 26, 0.5);
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+
+    
+}
+
+.card-text {
+    font-size: 1.2em;
+}
+
+.card-title {
+    font-size: 1.5em;
+}
+
+.visto {
+    color: seagreen;
+}
+
+.novisto {
+    color: red;
+}
+
+ul {
+    list-style-type:none
+}
+

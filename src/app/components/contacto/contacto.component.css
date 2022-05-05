@@ -1,0 +1,39 @@
+
+
+.seccion {
+    padding: 2rem;
+    margin-top: 4rem;
+    background-color: rgba(57, 121, 107, 0.6);
+   
+
+}
+
+.seccion-title {
+    font-size: 3rem;
+    color:rgb(255, 253, 240);
+    text-shadow: 5px 5px 3px rgba(0, 37, 26, 0.5);
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+
+    
+}
+
+.tarjeta { 
+    margin: 3em;
+    padding-right: 2em;
+    padding-left: 2em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    border-width: 5px;
+    border-color: rgb(42, 57, 64);
+    border-style:groove;
+    margin-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+    text-shadow: rgb(88, 93, 94) 0.1em;
+    text-decoration-color:rgb(153, 123, 90);
+    text-decoration:wavy;
+    font-weight: bolder;
+    justify-content: center;
+    
+}
+

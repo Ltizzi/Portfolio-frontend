@@ -1,0 +1,106 @@
+
+.navbar {
+  
+    background-color: rgba(42, 57, 64, 0.9);
+    margin: 0px;
+    /* padding: auto; */
+  
+}
+
+
+
+.active {
+    background-color: rgb(107, 177, 163);
+    
+   
+}
+
+.nav-item {
+    padding-right: 1%;
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+    color:rgb(255, 251, 212);  
+}
+
+
+
+.texto {
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+    font-size: 1rem;
+    color:rgb(255, 253, 240);
+
+}
+
+.arg-prog {
+    width: 100px;
+    max-width: 9em;
+    
+
+}
+
+.nav-link {
+    text-align: center;
+    padding-top: 1em;
+}
+
+.social-logo {
+    margin-top: 0.2rem;
+    padding-left: 0.5rem;
+    
+}
+
+a:visited {
+    color: white;
+}
+
+.admin {
+    margin-left: 5rem;
+   
+}
+
+.boton {
+    margin-left: 0.5rem;
+}
+
+.navbar-toggler-icon{
+    border-color: white;
+}
+
+.botcol {
+    margin-left: 3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+
+
+
+@media (max-width: 600) {
+
+    .social-logo {
+        padding-top: 0.5em;
+        padding-bottom: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .boton {
+        padding-top: 3rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+   
+}
+
+@media (max-width:900) {
+    .texto{
+        font-size: 1.5rem;
+    }
+
+  
+}
+
+
+
+
+

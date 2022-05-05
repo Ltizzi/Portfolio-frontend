@@ -1,0 +1,21 @@
+<div class="container-fluid">
+
+    <app-about *ngIf="load"></app-about>
+    <br>
+    <br>
+    <div  class="container-fluid" @fadeReallySlow>
+       
+       
+        <app-proyectos *ngIf="load"></app-proyectos>
+        <app-contacto *ngIf="load"></app-contacto>
+        <br>
+        <br>
+        <br>
+        <app-footer *ngIf="load"></app-footer>
+    
+    </div>
+    
+
+    
+</div>
+

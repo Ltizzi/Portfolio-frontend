@@ -1,0 +1,29 @@
+
+<form class="form-signin"  [formGroup]="form" (ngSubmit)="signIn($event)" >
+    <h2 class="form-signin-heading">Ingrese usuario y contraseña</h2>
+    <label for="inputUser" class="sr-only">Usuario</label>
+    <input type="text" id="inputUser" name="username" formControlName="username"  
+          [ngClass]="{'is-invalid': Username?.errors && Username?.touched, 'is-valid': !Username?.errors && Username?.touched }"
+          class="form-control" placeholder="Usuario" required autofocus>
+    <div *ngIf="Username?.errors && Username?.touched" class="alert alert-danger">
+      <p class="text-danger" *ngIf="Username?.hasError('required')">
+        El usuario es necesario
+      </p>
+      <p class="text-danger" *ngIf="invalidLogin">
+        Invalid username and/or password.
+      </p>
+      <p class="text-danger" *ngIf="Username?.hasError('minlength')">
+        El usuario debe tener mínimo de tres caracteres
+      </p>
+    </div>
+    
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" name="password" formControlName="password" class="form-control" placeholder="Password" required>
+    <div *ngIf="Password?.errors && Password?.touched" class="alert alert-danger">
+      <p class="text-danger" *ngIf="Password?.hasError('required')">
+        La cotnraseña es necesario
+      </p>
+    </div>
+   
+    <button mat-raised-button color="accent"  mat-dialog-close="yes" type="submit">Sign in</button>
+  </form>

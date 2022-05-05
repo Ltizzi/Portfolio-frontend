@@ -1,0 +1,9 @@
+body {
+    min-width: 20%;
+    background-image: url('/assets/headerimg.jpg');
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-size: cover;
+    
+}
+

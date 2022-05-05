@@ -1,0 +1,423 @@
+<div class="container-fluid row" *ngIf="load">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="todo">
+            <div  @fadeslow>
+                <button *ngIf="isAdmin()" class="btn btn-warning create" (click)="callEditorCreate()" title="Crear nueva entrada">
+                    Agregar nuevo trabajo
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                      </svg>
+                </button>
+                
+                <div class="tarjeta" @fade *ngIf="editorCreate">
+                    <form #form="ngForm" (ngSubmit)="submitForm(form, 0)">
+                
+                        <div class="form-group row">
+        
+                            <div class="col-sm-3 form-data">
+                                <label for="titulo">Título:</label>
+                                            <input
+                                                [attr.required]="postOrPatch ? postOrPatch: null"
+                                                minlength="5"
+                                                maxlength="30"
+                                                type="text"
+                                                ngModel
+                                               
+                                                name="titulo"
+                                                #titulo="ngModel"
+                                                id="titulo"
+                                                class="form-control">
+                                            <div 
+                                                class="alert alert-danger" 
+                                                *ngIf="titulo.touched && !titulo.valid">
+                                            <div *ngIf="titulo.errors?.['required']">
+                                                Debe introducir el titulo</div>
+                                            <div *ngIf="titulo.errors?.['minlength']">
+                                                El título debe tener un míńimo de {{ titulo.errors?.['minlength'].requiredLength }} caracteres</div>
+                                             <div *ngIf="titulo.errors?.['pattern']">
+                                                El título sólo debe tener letras del alfabeto</div>
+                                            </div>
+                            </div>
+        
+                            <div class="col-sm-3 form-data">
+                                <label for="empresa">Empresa:</label>
+                                            <input
+                                                [attr.required]="postOrPatch ? postOrPatch: null" 
+                                                minlength="3"
+                                                maxlength="30"
+                                                type="text"
+                                                ngModel
+                                                
+                                                name="empresa"
+                                                #empresa="ngModel"
+                                                id="empresa"
+                                                class="form-control">
+                                            <div 
+                                                class="alert alert-danger" 
+                                                *ngIf="empresa.touched && !empresa.valid">
+                                            <div *ngIf="empresa.errors?.['required']">
+                                                Debe introducir el nombre de la empresa</div>
+                                            <div *ngIf="empresa.errors?.['minlength']">
+                                                El nombre de la empresa debe tener un míńimo de {{ empresa.errors?.['minlength'].requiredLength }} caracteres</div>
+                                             <div *ngIf="titulo.errors?.['pattern']">
+                                                El nombre de la empresa sólo debe tener letras del alfabeto</div>
+                                            </div>
+                            </div>
+        
+                            <!-- <div class="col-sm-3 form-data">
+                                <label for="tipo_trabajo">Tipo de trabajo:</label>
+                                            <input
+                                                [attr.required]="postOrPatch ? postOrPatch: null"
+                                                minlength="5"
+                                                maxlength="15"
+                                                type="text"
+                                                ngModel
+                                               
+                                                name="tipo_trabajo"
+                                                #tipo_trabajo="ngModel"
+                                                id="tipo_trabajo"
+                                                class="form-control">
+                                            <div 
+                                                class="alert alert-danger" 
+                                                *ngIf="tipo_trabajo.touched && !tipo_trabajo.valid">
+                                            <div *ngIf="tipo_trabajo.errors?.['required']">
+                                                Debe introducir el tipo de trabajo </div>
+                                            <div *ngIf="tipo_trabajo.errors?.['minlength']">
+                                                El tipo de trabajo debe tener un míńimo de {{ tipo_trabajo.errors?.['minlength'].requiredLength }} caracteres</div>
+                                             <div *ngIf="tipo_trabajo.errors?.['pattern']">
+                                                El tipo de trabajo sólo debe tener letras del alfabeto</div>
+                                            </div>
+                            </div> -->
+        
+                            <div class="col-sm-2">
+        
+                            </div>
+        
+                        </div>
+                        <br>
+        
+                        <div class="form-group row">
+        
+                            <div class="form-group col-sm-3">
+                                <label for="fecha_inicio">Fecha de inicio</label>
+                                <input
+                                    [attr.required]="postOrPatch ? postOrPatch: null"
+                                    class="form-control form-data fecha" 
+                                    type="date"
+                                    ngModel
+                                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"    
+                                    name="fecha_inicio"                                                                       
+                                    #fecha_inicio="ngModel"
+                                    id="fecha_inicio">
+                            </div>
+        
+                            <div class="form-group col-sm-3">
+                                <label for="fecha_finalizado">Fecha de finalización:</label>
+                                <input
+                                    [attr.required]="postOrPatch ? postOrPatch: null"
+                                    class="form-control form-data fecha" 
+                                    type="date"
+                                    ngModel
+                                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"    
+                                    name="fecha_finalizado"                                                                       
+                                    #fecha_inicio="ngModel"
+                                    id="fecha_finalizado">
+                            </div>
+        
+                            
+                            
+                        </div>
+                        <br>
+        
+                        <div class="form-group col-sm-3">
+                            <label for="url_img">Foto descriptiva:</label>
+                            <input
+                                    [attr.required]="postOrPatch ? postOrPatch: null" 
+                                    ngModel
+                                    class="form-control form-url"
+                                    name="url_img"
+                                    #url_img="ngModel"
+                                    id="url_img"
+                                    type="text">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="about">Descripción de trabajo y tareas:</label>
+                            <textarea
+                                [attr.required]="postOrPatch ? postOrPatch: null"  
+                                ngModel 
+                                name="about" 
+                                id="about" 
+                                cols="10" 
+                                rows="4" 
+                                class="form-control"></textarea>
+                        </div>
+        
+                            
+                      
+        
+                        <div *ngIf="editorCreate">
+                           <!-- <p>
+                            {{form.value | json}}
+                            </p>  -->
+                            <button                        
+                                class="btn btn-primary"
+                                
+                                [disabled]="!form?.['valid']">
+                           
+                                Submit
+                            </button>
+                        </div>
+                        
+        
+                    </form>
+                </div>
+            </div>
+            <div class="row mar">
+                <div *ngFor="let xp of exps" id="{{xp.exp_id}}">
+                    
+                    <div  class="tarjeta" @slideLeft  *ngIf="!xp.deleted">
+        
+                        <div class="row" *ngIf="!xp.editor || !xp.visible">
+                            <div class="tar-img col-sm-2" >
+                                <img  class="imgensi img-fluid"src="{{xp.url_img}}" alt="Card image cap">
+                            </div>
+                            <div class="tar-body col-sm-7" *ngIf="!xp.editor || xp.visible">
+                                <h5 class="card-title">{{xp.titulo}}</h5>                                
+                                <h6 class="card-subtitle">{{xp.empresa}} </h6>
+                                <ul style="list-style-type:none">
+                                    <li class="card-text">
+                                        Desde el {{xp.fecha_inicio}}
+                                    </li>
+                                    <li class="card-text" *ngIf="xp.fecha_finalizado">
+                                        Hasta el {{xp.fecha_finalizado}}
+                                    </li>
+                                    <li class="card-text">
+                                        {{xp.url}}
+                                    </li>
+                                </ul>
+                                                   
+                                
+                              
+                       
+                            </div>
+                            <div class="tar-crud col-sm-3" *ngIf="isAdmin()">
+                               
+                                <button class="btn btn-info" (click)="callEditorEdit(xp.exp_id)" title="Editar entrada">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                </button>
+                                <button class="btn btn-danger" (click)="delExp(xp.exp_id)" title="Borrar entrada">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                                        <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="!xp.editor || !xp.visible">
+                            <p class="data-about">{{xp.about}}</p>
+                        </div>
+            
+            
+                        <div class="editor row" *ngIf="xp.editor && xp.visible">
+            
+                            <form #form="ngForm" (ngSubmit)="submitForm(form, xp.exp_id)"@fade>
+                
+                                <div class="form-group row">
+                
+                                    <div class="col-md-3 form-data">
+                                        <label for="titulo">Título:</label>
+                                                    <input
+                                                        [attr.required]="postOrPatch ? postOrPatch: null"
+                                                        minlength="5"
+                                                        maxlength="30"
+                                                        type="text"
+                                                        ngModel
+                                                        placeholder="{{xp.titulo}}"
+                                                        name="titulo"
+                                                        #titulo="ngModel"
+                                                        id="titulo"
+                                                        class="form-control">
+                                                    <div 
+                                                        class="alert alert-danger" 
+                                                        *ngIf="titulo.touched && !titulo.valid">
+                                                    <div *ngIf="titulo.errors?.['required']">
+                                                        Debe introducir el titulo</div>
+                                                    <div *ngIf="titulo.errors?.['minlength']">
+                                                        El título debe tener un míńimo de {{ titulo.errors?.['minlength'].requiredLength }} caracteres</div>
+                                                     <div *ngIf="titulo.errors?.['pattern']">
+                                                        El título sólo debe tener letras del alfabeto</div>
+                                                    </div>
+                                    </div>
+                
+                                    <div class="col-md-2 form-data">
+                                        <label for="empresa">Empresa:</label>
+                                                    <input
+                                                        [attr.required]="postOrPatch ? postOrPatch: null" 
+                                                        minlength="3"
+                                                        maxlength="30"
+                                                        type="text"
+                                                        ngModel
+                                                        placeholder="{{xp.empresa}}"
+                                                        name="empresa"
+                                                        #empresa="ngModel"
+                                                        id="empresa"
+                                                        class="form-control">
+                                                    <div 
+                                                        class="alert alert-danger" 
+                                                        *ngIf="empresa.touched && !empresa.valid">
+                                                    <div *ngIf="empresa.errors?.['required']">
+                                                        Debe introducir el nombre de la empresa</div>
+                                                    <div *ngIf="empresa.errors?.['minlength']">
+                                                        El nombre de la empresa debe tener un míńimo de {{ empresa.errors?.['minlength'].requiredLength }} caracteres</div>
+                                                     <div *ngIf="titulo.errors?.['pattern']">
+                                                        El nombre de la empresa sólo debe tener letras del alfabeto</div>
+                                                    </div>
+                                    </div>
+            
+                                      <div class="col-md-2"></div>
+                                
+            
+                                    <div class="tar-crud col-md-2" *ngIf="isAdmin()">                            
+        
+                                        <button class="btn btn-info" (click)="callEditorEdit(xp.exp_id)" title="Editar entrada">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn btn-danger" (click)="delExp(xp.exp_id)" title="Borrar entrada">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                                                <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                
+                                </div>
+                                <br>
+            
+                                <div class="form-group row">
+        
+                                    <!-- <div class="col-md-2 form-data">
+                                        <label for="tipo_trabajo">Tipo de trabajo:</label>
+                                                    <input
+                                                        [attr.required]="postOrPatch ? postOrPatch: null"
+                                                        minlength="5"
+                                                        maxlength="15"
+                                                        type="text"
+                                                        ngModel
+
+                                                        name="tipo_trabajo"
+                                                        #tipo_trabajo="ngModel"
+                                                        id="tipo_trabajo"
+                                                        class="form-control">
+                                                    <div 
+                                                        class="alert alert-danger" 
+                                                        *ngIf="tipo_trabajo.touched && !tipo_trabajo.valid">
+                                                    <div *ngIf="tipo_trabajo.errors?.['required']">
+                                                        Debe introducir el tipo de trabajo </div>
+                                                    <div *ngIf="tipo_trabajo.errors?.['minlength']">
+                                                        El tipo de trabajo debe tener un míńimo de {{ tipo_trabajo.errors?.['minlength'].requiredLength }} caracteres</div>
+                                                     <div *ngIf="tipo_trabajo.errors?.['pattern']">
+                                                        El tipo de trabajo sólo debe tener letras del alfabeto</div>
+                                                    </div>
+                                    </div> -->
+            
+                                    <div class="form-group col-md-3">
+                                        <label for="fecha_inicio">Fecha de inicio</label>
+                                        <input
+                                            [attr.required]="postOrPatch ? postOrPatch: null"
+                                            class="form-control form-data" 
+                                            type="date"
+                                            ngModel
+                                            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"    
+                                            name="fecha_inicio"                                                                       
+                                            #fecha_inicio="ngModel"
+                                            id="fecha_inicio">
+                                    </div>
+            
+                                    <div class="form-group col-md-3">
+                                        <label for="fecha_finalizado">Finalización:</label>
+                                        <input
+                                            [attr.required]="postOrPatch ? postOrPatch: null"
+                                            class="form-control form-data" 
+                                            type="date"
+                                            ngModel
+                                            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"    
+                                            name="fecha_finalizado"                                                                       
+                                            #fecha_inicio="ngModel"
+                                            id="fecha_finalizado">
+                                    </div>
+            
+                                   
+                                    
+                                </div>
+                                <br>
+        
+                                <div class="form-group col-md-3">
+                                    <label for="url_img">Foto descriptiva:</label>
+                                    <input
+                                            [attr.required]="postOrPatch ? postOrPatch: null" 
+                                            ngModel
+                                            class="form-control form-url"
+                                            name="url_img"
+                                            #url_img="ngModel"
+                                            id="url_img"
+                                            type="text"
+                                            placeholder="{{xp.url_img}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="about">Descripción de trabajo y tareas:</label>
+                                    <textarea
+                                        [attr.required]="postOrPatch ? postOrPatch: null"  
+                                        ngModel 
+                                        name="about" 
+                                        id="about" 
+                                        cols="10" 
+                                        rows="4" 
+                                        class="form-control"
+                                        placeholder="{{xp.about}}"></textarea>
+                                </div>
+            
+                                    
+                              
+                
+                                <div *ngIf="xp.editor">
+                                   <p>
+                                    {{form.value | json}}
+                                    </p> 
+                                    <button                        
+                                        class="btn btn-primary"
+                                        
+                                        [disabled]="!form?.['valid']">
+                                   
+                                        Submit
+                                    </button>
+                                </div>
+                                
+                
+                            </form>
+                        </div>
+                       
+        
+                    </div>
+                    
+            
+                </div>
+        
+               
+               
+            </div>
+        
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
+<br>
+<br>
+<app-footer *ngIf="load" class="foot"></app-footer>

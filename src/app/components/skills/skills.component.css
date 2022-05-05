@@ -1,0 +1,276 @@
+.todo {
+    background-color: transparent;
+
+}
+
+.seccion {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    margin-top: 4rem;
+    background-color: rgba(57, 121, 107, 0.6);
+   
+
+}
+
+.seccion-title {
+    font-size: 3rem;
+    color:rgb(255, 253, 240);
+    text-shadow: 5px 5px 3px rgba(0, 37, 26, 0.5);
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+
+    
+}
+
+.create {
+
+    margin-top: 5em;
+    margin-left: 5rem;
+    padding-bottom: 2rem;
+
+}
+
+.editor-ed {
+    
+    background-image: url('/assets/panel.png');
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-size: cover;
+    padding-top: 1rem;
+    color:rgb(255, 253, 240);
+    font-family:  Roboto,'Helvetica Neue', sans-serif;
+    text-shadow: rgb(28, 34, 35) 0.1em 0.1em 0.2em;;
+    text-decoration-color:rgb(153, 123, 90);
+    text-decoration:wavy;
+}
+
+
+
+.contenedor {
+    padding: 1%;
+    margin-left: 0em;
+
+   
+}
+
+.editor-create {
+    background-color: rgba(42, 57, 64, 0.99999);
+    padding: 0%;
+    width: 20em;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    border-width: 5px;
+    border-color: rgb(42, 57, 64);
+    border-style:groove;
+    margin-bottom: 5px;
+    color:rgb(255, 253, 240);
+    font-family:  Roboto,'Helvetica Neue', sans-serif;
+    text-shadow: rgb(28, 34, 35) 0.1em 0.1em 0.2em;;
+    text-decoration-color:rgb(153, 123, 90);
+    text-decoration:wavy;
+}
+
+.imgensi {
+    
+    background-color: white;
+    border-style: double;
+    margin-left: 1em;
+    margin-top: 1em;
+    margin-right: auto;
+    width: 12em;
+    height: 12em;
+    border-radius: 50%;
+
+}
+
+
+
+.pelota {
+    
+    width: 15em;
+    height: 15em;
+    border-width: 5px;
+    border-color: rgb(42, 57, 64);
+    border-style:groove;
+    border-radius: 50%;
+    background-color: rgba(42, 57, 64, 0.9);
+    color:rgb(255, 254, 246);
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+    text-shadow: rgb(28, 34, 35) 0.1em 0.1em 0.2em;;
+    text-decoration-color:rgb(153, 123, 90);
+    text-decoration:wavy;
+    cursor: pointer;
+
+    
+}
+
+.tarjeta { 
+
+    padding-right: 2em;
+    padding-left: 2em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    border-width: 5px;
+    border-color: rgb(42, 57, 64);
+    border-style:groove;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    background-image: url('/assets/panel.png');
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-size: cover;
+    color:rgb(255, 253, 240);
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+    text-shadow: rgb(28, 34, 35) 0.1em 0.1em 0.2em;;
+    text-decoration-color:rgb(153, 123, 90);
+    text-decoration:wavy;
+    
+}
+
+.data-about {
+    text-align: center;
+}
+
+
+
+.tar-body {
+    padding: 0;
+    text-align: left;
+    font-size: 0.8rem;
+    
+    
+}
+
+.tar-btn {
+    margin-left: 4em;
+}
+
+.tar-btn2{
+    margin-left: 5.7rem;
+}
+
+.tar-crud {
+    margin-left: -2em;
+    margin-bottom: 0.5em;
+    
+
+}
+
+.card-text {
+    font-size: 1.2em;
+    justify-self: center;
+}
+
+.card-title {
+    font-size: 1.5em;
+    justify-self: center;
+}
+
+.data-about {
+    font-size:1.2em;
+    justify-self: center;
+}
+
+.btn {
+    margin-right: 2px;
+}
+
+.form-data{
+    width: max-content;
+}
+
+.form-url {
+    width: max-content;
+    margin-left: 0.080em;
+}
+
+.about {
+    height: 50px;
+}
+
+
+@media (max-width: 1366px) {
+    .tar-btn2{
+        margin-left: -4.3rem;
+    }
+}
+
+@media (max-width: 600px) {
+  
+    .seccion {
+        margin-top: 10rem;
+    }
+
+    .imgensi {
+        max-width: 6em;
+        max-height: 6em;
+        margin-top: 0em;
+        margin-left: 0em;
+    }
+
+    .pelota {
+        width: 7em;
+        height: 7em;
+    }
+
+    .tarjeta {
+        margin-top: 10em;
+    }
+
+    .tar-body {
+        padding-top: 1em;
+        padding-right: 2em;
+        margin-left: -1.1em;
+        
+    }
+
+  
+
+  
+
+}
+
+@media (max-width: 900px) {
+    .card-title {
+        font-size: 1.2em;
+    }
+
+    .card-subtitle {
+        font-size: 1.2em;
+    }
+
+    .card-text {
+        font-size: 1.2em;
+    }
+
+    .data-about {
+        font-size: 1.2em;
+
+    }
+}
+
+
+
+
+* {box-sizing:border-box}
+
+
+.bars {
+  width: 100%; 
+  background-color: rgb(51, 70, 63); 
+}
+
+.skills {
+  text-align: right; 
+  padding-top: 10px; 
+  padding-bottom: 10px; 
+  padding-right: 1rem;
+  color: white;
+}
+
+#Avanzado {width: 90%; background-color: #067e52;} 
+#Intermedio {width: 50%; background-color: #08e795;} 
+#Principiante {width: 25%; background-color: #75f321;} 
+
+
+
+

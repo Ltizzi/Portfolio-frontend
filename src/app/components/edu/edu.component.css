@@ -1,0 +1,175 @@
+.todo {
+
+    background-color: transparent;
+    margin-top: 7rem;
+    padding-bottom: 2rem;
+
+}
+
+.create {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+a { 
+    color:rgb(203, 255, 92);
+}
+
+
+
+.imgensi {
+    
+    background-color: white;
+    border-style: double;
+    max-width: 100%;
+    min-width: 20%;
+}
+
+.tarjeta { 
+
+    padding-right: 2em;
+    padding-left: 2em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    margin-bottom: 2rem;
+    border-width: 5px;
+    border-color: rgb(42, 57, 64);
+    border-style:groove;
+    margin-bottom: 5px;
+    background-image: url('/assets/panel.png');
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-size: cover;    
+    color:rgb(255, 253, 240);
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+    text-shadow: rgb(28, 34, 35) 0.1em 0.1em 0.2em;;
+    text-decoration-color:rgb(153, 123, 90);
+    text-decoration:wavy;
+    
+}
+
+#descripcion {
+    width: 40em;
+}
+
+.editor {
+
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-top: 0em;
+    padding-bottom: 1em;    
+    border-width: 5px;
+    border-color: rgb(42, 57, 64);
+    border-style:groove;
+    background-color: rgba(42, 57, 64, 0.9);    
+    color:rgb(255, 253, 240);
+    font-family: Roboto,'Helvetica Neue', sans-serif;
+    text-shadow: rgb(28, 34, 35) 0.1em 0.1em 0.2em;;
+    text-decoration-color:rgb(153, 123, 90);
+    text-decoration:wavy;
+}
+
+.tar-img {
+    padding:0.5em;
+   
+}
+
+.tar-body {
+    padding: 1%;
+    padding-left: 20px;
+    
+}
+
+.card-text {
+    font-size: 1.2em;
+    margin-left: -2em;
+    padding-top: 0.1rem;
+}
+
+.card-title {
+    font-size: 1.9em;
+    margin-left: -0.2rem;
+}
+
+.card-subtitle {
+    font-size: 1.4em;
+}
+
+.data-about {
+    font-size:1.2em;
+    padding: 1rem;
+}
+
+.crud {
+    padding-top: 1%;
+
+}
+
+.btn {
+    margin-right: 2px;
+}
+
+.form-data{
+    width: max-content;
+}
+
+.form-url {
+    width: 32em;
+    margin-left: 0.080em;
+}
+
+
+@media (max-width: 767px) {
+    .headimg {
+        max-width: 20em;
+    }
+
+    .imgensi {
+        max-width: 5em;
+    }
+}
+
+@media (max-width: 900px) {
+    .card-title {
+        font-size: 1.2em;
+    }
+
+    .card-subtitle {
+        font-size: 1.2em;
+    }
+
+    .card-text {
+        font-size: 1.2em;
+    }
+
+    .data-about {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 600px) {
+    .headimg {
+        max-width: 16em;
+        margin-left: -1em;
+    }
+
+    .imgensi {
+        max-width: 9em;
+        margin-top: 7.5em;
+        margin-left: -1.5em;
+    }
+
+    .tarjeta {
+        margin-top: 10em;
+    }
+
+    .tar-body {
+        padding-top: 1em;
+        padding-right: 2em;
+        margin-left: -0.6em;
+        
+    }
+
+
+}
+
